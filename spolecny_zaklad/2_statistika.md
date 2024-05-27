@@ -132,20 +132,20 @@
 
 ### Intervaly spolehlivosti (confidence intervals, CI)
 
-- intervalový odhad = arametr aproximujeme intervalem, v němž s velkou pravděpodobností daný parametr leží
+- intervalový odhad = parametr aproximujeme intervalem, v němž s velkou pravděpodobností daný parametr leží
 - může být jednostranný nebo dvoustranný
 - <https://bookdown.org/egarpor/inference/confint.html>
 - říkají, "jak (ne)přesný" je bodový odhad nějakého parametru
     - "střední hodnota odhadu $\pm$ jeho rozptyl"
 - hladina spolehlivosti: $1-\alpha$, kde $\alpha$ je hladina významnosti
-    - v praxi hledáme kompromis mezi psolehlivostí a významností
+    - v praxi hledáme kompromis mezi spolehlivostí a významností
 - definice: $$CI_{1-\alpha}(\theta)=[T_{inferior}(x_1,\ldots,x_n),T_{superior}(x_1,\ldots,x_n)]$$ where $T_{inferior},T_{superior}$ jsou bodové odhady takové, že $$P(T_{inferior}\leq \theta \leq T_{superior})\geq 1-\alpha$$ pro všechny možné hodnoty $\theta$
 - bootstraping nám může pomoct s konstrukcí různých druhů konfidenčních intervalů
 
 #### Příklad: interval spolehlivosti pro střední hodnotu pro normální rozdělení
 
 - předpokládejme sledovanou náhodnou veličinu $X$, známe její rozptyl $\sigma^2$
-- víme, že pro dostatečně velký rozsah výbýru ($n\to \infty$) je rozdělení průměru
+- víme, že pro dostatečně velký rozsah výběru ($n\to \infty$) je rozdělení průměru
 asymptoticky normální se střední hodnotou $\mu$ a rozptylem  $\sigma^2/n$, tedy
 $$
 \overline{X}\to N\left(\mu;\frac{\sigma^2}{n}\right)
@@ -279,8 +279,8 @@ $$
     - $H_A: \tilde{x}\neq x_0$
 - test:
     1. nechť $Y_i=X_i-x_0$
-    2. seřadíme  $Y_i$: ${|Y_i|}_{(1)}\leq \ldots \leq {|Y_j|}_{(n)}$, nechť $R_i^+# je pořadí $Y_i$ v seřazené sekvenci
-    3. spočítáme sum of ranks pro kladná a záporná $Y_i$ $$T^+=\sum_{Y_i>0}R_i^+, T^-=\sum_{Y_i<>>0}R_i^+$$
+    2. seřadíme  $Y_i$: ${|Y_i|}_{(1)}\leq \ldots \leq {|Y_j|}_{(n)}$, nechť $R_i^+$ je pořadí $Y_i$ v seřazené sekvenci
+    3. spočítáme sum of ranks pro kladná a záporná $Y_i$ $$T^+=\sum_{Y_i>0}R_i^+, T^-=\sum_{Y_i<0}R_i^+$$
     4. zaímáme na základě $min(T^+,T^-)$ porovnané s kritickou hodnotou
 - asymptoticky stejně jako výše znaménkový test
 - silnější než znaménkový test
