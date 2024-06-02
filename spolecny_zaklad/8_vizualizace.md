@@ -11,6 +11,7 @@
     - pomoci interpretaci dat
     - získat pozornost
 - pozor, vizualizace mohou snadno manipulovat adresáta, to nechceme
+
 - dnes důležité pro medicínu, mapy, miproskpii, abstraktní data, ...
 ## Expresivita vs efektivita
  **Expressiveness** 
@@ -390,3 +391,34 @@ Possible problems with the transformation:
     - vizualizace výsledků hleání - obdélník odpopídá délce textu, barva pixelů odpovídá výskytu hledaných termínů (každý termín v jednom řádku)
     - theme river
     - síť dokumentů, u každého vrcholy s termíny
+
+
+## Interakce
+
+- článek, ze kterého vycházela přednáška: <https://davis.wpi.edu/~xmdv/docs/vissym04_interaction.pdf>
+- navigace = změna pohledu kamery (rotace, posuny přiblížení, ...)
+- selekce 
+    - různé parametry:
+        - granularita selekce - vvybere se po kliknutí jen vrchol, nebo i jeho sousedi?
+        - přidá se nová selekce ke staré, nebo se nahradí?
+- filtrace - redukujeme množství dat nebo dimenzí ke zobrazení
+    - na rozdíl od selekce a pak skrytí se obvykle dělá nepřímo v datech
+- přeskládání dat - př. PCA, MDS
+- překódovací operace - změna typu grafu, barev, markerů, ...
+- agregace - linked selection, brushnig (pokud můžeme selekci průběžně měnit)
+- abstrakce/konkretizace - distortion operators - třeba lupa
+- interakce mohou probíhat na úrovni různých prostorů
+    - screen space (pixely) - posun, zoom, lupa, ...
+    - data value space - výběr, filtrování
+    - komponenty dat
+    - komponenty grafického výstupu (prostor atributů)
+    - objekty, 3D plochy - opět zoom, otáčení, výběr objektu, perspective walls
+    - změny struktury vizalizace - př. skrytí komponent
+- animace - postupný přechod jednoho pohledu do jiného
+    - nejprve určíme krajní body, přímku po které se budeme pohybovat, pak parametrizujeme pohyb
+    - chceme se pomalu rozjet, pak jet a pak zabrzdit do nuly, ne trhavé pohyby
+        - křivky pozice, rychlosti a zrychlení
+
+![Fisheye](../obrazky/8_vizualizace/fisheye.png)
+
+![Perspektivní stěny](../obrazky/8_vizualizace/perspective_wall.png)
