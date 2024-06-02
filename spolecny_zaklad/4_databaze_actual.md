@@ -1,26 +1,3 @@
-# 4. Databáze
-
-> Ukládání dat, adresování záznamů. Indexování a hašování více atributů, rastrové (bitmap) indexy, dynamické hašování. Vyhodnocování dotazu a algoritmy, statistiky a odhady nákladů. Optimalizace dotazů a schémat, pravidla pro transformaci dotazů, rozdělování dat. Ladění dotazů a schématu. Zpracování transakcí, výpadky a zotavení. Bezpečnost, přístupová oprávnění. (PA152)
-
-# PA152 Databáze (Dohnal)
-
-- Database
-    - data that are processed, interesting for a business
-    - collection of relations, integrity constraints, indexes, …
-    - database schema vs. database instance
-- Database management system = DBMS
-    - a collection of tools for storing and processing data
-    - architecture: view level (view 1, view 2 ... view n) - logical level - physical level
-    - main components of DBMS
-        - storage manager
-            - manages blocks on disks
-            - manages buffers/caches
-        - query processor
-            - query translation, optimization
-            - query execution
-        - transaction manager
-            - atomicity, consistency, isolation, durability of transaction processing
-
 ## Data Storage
 ### Storage Hierarchy
 - **primary storage**
@@ -361,8 +338,7 @@ Proč defragmentace?
             - approximation - "clock" algorithm
         - FIFO: store time of loading, no update on access; improper for highly accessed blocks
         - pinned blocks: blocks allocated in buffers forever  
-
-## Indexing
+## Indexing and Hashing
 
 - reason: faster access to records
 - variants: indexes, B-tree, hashing
@@ -749,43 +725,6 @@ Proč defragmentace?
         - if almost all are distinct: assume V(R,A)=T(R)
         - if not many are distinct: we likely saw most of them
 
-## Sorting
-
-- applications
-    - on result presentation (ORDER BY)
-    - joins
-    - filtering duplicates
-- assumptions
-    - main memory with limited capacity
-    - data stored on disk
-    - output kept in memory (usually processed by next operations)
-    - cost of sorting - number of disk accesses
-- existuje hodně třídících algoritmů pro třídění v paměti
-- sorting in memory
-    - data in main memory
-    - sorting in-place, use little additional memory
-- small main memory
-    - data compression - pracujeme jen s klíči a pointery, ne celými záznamy
-        - ok, ale pak musíme data stejně přečíst, aby se s nimi dalo dál pracovat, navíc budeme přistupovat náhodně, ne sekvenčně
-    - memory virtualization
-        - obvykle moc pomalé
-    - modifikace třídících algoritmů
-        - zkombinujeme více přístupů, často MergeSort a QuickSort
-
-### Diska-based MergeSort
-
-- vytvoříme úseky takové, aby se vešly do RAM
-- každý úsek načteme, setřídíme a zapíšeme zpět na disk
-- načteme všechny setřízené úseky a mergneme je
-    - mergování v paměti po dvojicích je pomalé, pořád znovu načítáme a zapisujeme
-    - multi-way merging
-        - read all runs block by block
-        - do merging into an output block
-        - opakovaně najdeme nejmenší hodnotu ze všech úseků (bloků), zapíšeme do output bloku a když je plný, tak ho zapíšeme na disk
-            - když se vyprázdní nějaký ze vstupních bloků z nějakého záznamu, tak načteme další blok stejného záznamu
-- omezení - pokud je velikost paměti v blocích M, tak run může být max délky M (abychom ho mohli v první fázi setřídit) a můžeme jich mít max M-1 (abych mohli ve druhé fázi mít z každého jeden blok v paměti a k tomu jeden output blok), nejvíc tedy můžeme mít M(M-1) bloků
-    - když to nestačí, rozdělíme na další fáze (třífázové třídění)
-
 ## Query Optimization
 
 - generating and comparing query execution plans
@@ -987,7 +926,7 @@ funkce doJoin():
                 - pro set intersection (menší relace S) načteme bucket S do paměti a kontrolujeme, co z něj je v R
                 - pro rozdíl R-S, abychom eliminovali duplicity v R, tak načteme bucket z R do paměti 
 
-## Query tunning
+## Query tuning
 
 - local tuning = query rewrite
     - first approach to speed up a query
